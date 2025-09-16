@@ -1,0 +1,82 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* End of CSS */
+
+/* Root Variables */
+:root {
+    --primary-color: #169df7;
+    --secondary-color: #7c8b82;
+    --font-family: 'Arial', sans-serif;
+    --font-size: 16px;
+}
+
+/* Global Styles */
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    color: #000000;
+    background-color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: var(--primary-color);
+    color: #d82121;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    background-color: var(--secondary-color);
+    padding: 0.5rem;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+main {
+    padding: 2rem;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #963838;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
