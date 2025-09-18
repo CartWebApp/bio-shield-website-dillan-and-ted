@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang='en'>
   <header>
+   
+   
+   
     <nav>
         <ul>
             <h2><li><a href="contact-us.html">Contact Us</a></li></h2>
@@ -15,16 +18,25 @@
     <title>Bio Shield</title>
   </head>
   <body>
+    <script>
+      // Apply zoom effect to all items with the class 'zoom-hover'
+      document.addEventListener("DOMContentLoaded", function () {
+        const zoomItems = document.querySelectorAll(".zoom-hover");
+        zoomItems.forEach(item => {
+          item.style.cursor = "pointer"; // Optional: makes it feel interactive
+        });
+      });
+    </script>
     <h1>Bio Shield</h1>
-    <img src='images/images/Logo.png' width='250' alt='Bio Shield Logo'/> 
+    <img src='images/images/Logo.png' class="zoom-hover" width='250' alt='Bio Shield Logo'/> 
     <p> Hello and welcome to Bioshield, your trusted partner in bug control and prevention. We are dedicated to providing effective <Wbr>
       solutions to protect you and your loved ones from the nuisance and health risks</p>
     
       <div class="image-row">
-        <img src="images/images/Item1.png"width='250' alt="Image 1" />
-        <img src="images/image2.jpg" alt="Image 2" />
-        <img src="images/image3.jpg" alt="Image 3" />
-   
+        <img src="images/images/Item1.png"class="zoom-hover" width='250' alt="Image 1" />
+        <img src="images/images/Copilot_20250917_103119 (1).png"class="zoom-hover" width='250' alt="Image 2" />
+        <img src="images/image3.jpg"class="zoom-hover" width='250' alt="Image 3" />
+      </div>
   </body> 
 
 
