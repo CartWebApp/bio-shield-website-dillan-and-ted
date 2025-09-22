@@ -53,7 +53,7 @@
     }
     .add {
       background: var(--accent);
-      color: #fff;
+      color: #ffffff;
       border: none;
       padding: .5rem 1rem;
       border-radius: var(--radius);
@@ -64,24 +64,24 @@
 
     #open-cart {
       position: fixed; right: 20px; bottom: 20px;
-      background: var(--accent); color: #fff;
+      background: var(--accent); color: #000000;
       border: none; border-radius: 50px;
       padding: .7rem 1.2rem;
       font-size: 1rem;
       cursor: pointer;
       display: flex; align-items: center; gap: .5rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
       z-index: 100;
     }
     #open-cart:hover { background: var(--accent-dark); }
-    #cart-count { background: #fff; color: var(--accent); border-radius: 999px; padding: .1rem .6rem; font-weight: bold; }
+    #cart-count { background: #ffffff; color: var(--accent); border-radius: 999px; padding: .1rem .6rem; font-weight: bold; }
 
     dialog#cart {
       width: min(600px, 95%);
       border: none;
       border-radius: var(--radius);
       padding: 1rem 1.2rem;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.25);
+      box-shadow: 0 40px 80px rgba(255, 255, 255, 0.25);
       margin: auto;     
       inset: 0;          
     }
@@ -97,7 +97,7 @@
     .qty { display: flex; gap: .3rem; align-items: center; }
     .qty button {
       background: var(--accent);
-      color: #fff; border: none; border-radius: var(--radius);
+      color: rgb(255, 255, 255); border: none; border-radius: var(--radius);
       padding: .3rem .6rem; cursor: pointer;
     }
     .subtotal { font-weight: 700; text-align: right; }
@@ -105,7 +105,7 @@
 
     #cart button {
       background: var(--accent);
-      color: #fff;
+      color: #ffffff;
       border: none;
       padding: 0.6rem 1.2rem;
       border-radius: var(--radius);
@@ -140,64 +140,38 @@
       color: #555;
     }
   </style>
+
+</style>
+
 </head>
 <body>
   <header>
     <nav aria-label="Main navigation">
       <ul class="nav">
-        <li><img src="images/images/Logo.png" alt="Bio Shield logo" class="logo"></li>
-        <li><a href="index.html">Home</a></li>
+        <li>
+          <img src="images/images/Logo.png" alt="Bio Shield logo" class="logo">
+        </li>
+        <li><a href="products.html">Products</a></li>
         <li><a href="contact-us.html">Contact Us</a></li>
-        <li><a href="about-us.html"> About Us</a></li>
+        <li><a href="about-us.html">About Us</a></li>
       </ul>
     </nav>
   </header>
 
   <main class="container">
-    <h1>Our Products</h1>
-    <p>Explore our premium Bio Shield products designed to keep you safe and healthy.</p>
-    <p>Explore our natural insect repellents below:</p>
+    <img src="images/images/Logo.png" width="250" alt="Bio Shield logo" />
 
-   <section class="image-row">
+    <section class="image-row" aria-label="Featured products">
       <article class="product">
-        <a href="product1.html"><img src="images/images/Item1.png" alt="Pump bottle Lotion"> </a>
-        <p class="price">$12.99</p>
-        <p class="desc"> A refreshing all-natural bug spray made with essential oils to keep pests away.
-        </p>
-        <button class="add" data-name="Bug Repellent Spray" data-price="12.99">Add to Cart</button>
-      </article>
-      <article class="product">
-        <a href="product2.html"><img src="images/images/item2.png" alt="hand-carru Lotion"> </a>
-        <p class="price">$12.99</p>
-        <p class="desc">hand-carry bottle Lotion:</p>
-        <p class="desc">A refreshing all-natural bug spray made with essential oils to keep pests away.</p>
-        <button class="add" data-name="Bug Repellent Spray" data-price="12.99">Add to Cart</button>
-      </article>
-
-      <article class="product">
-        <a href="product3.html"><img src="images/images/Item3.png" alt="Bug Repellent Lotion"> </a>
-        <p class="price">$12.99</p>
-        <p class="desc">A refreshing all-natural bug spray made with essential oils to keep pests away.</p>
-        <button class="add" data-name="Bug Repellent Spray" data-price="12.99">Add to Cart</button>
-      </article>
-
-      <article class="product">
-        <a href="product4.html"><img src="images/images/Item4.png" alt="Bug Repellent Spray"> </a>
-        <p class="price">$12.99</p>
-        <p class="desc">A refreshing all-natural bug spray made with essential oils to keep pests away.</p>
-        <button class="add" data-name="Bug Repellent Spray" data-price="12.99">Add to Cart</button>
-      </article>
-
-      <article class="product">
-        <a href="product5.html"><img src="images/images/Item5.png" alt="Bug Repellent repellant coils"> </a>
+        <a href="product5.html">
+          <img src="images/images/Item5.png" width="250" alt="Bug Repellent Spray">
+        </a>
         <p class="price">$12.99</p>
         <p class="desc">A refreshing all-natural bug spray made with essential oils to keep pests away.</p>
         <button class="add" data-name="Bug Repellent Spray" data-price="12.99">Add to Cart</button>
       </article>
     </section>
   </main>
-
-
 
   <!-- Floating Cart Button -->
   <button id="open-cart" aria-haspopup="dialog" aria-controls="cart">
@@ -220,12 +194,6 @@
   </footer>
 
   <script>
-    const savedCart = localStorage.getItem('bioShieldCart');
-if (savedCart) {
-  Object.assign(cart, JSON.parse(savedCart));
-  updateCart();
-}
-
     const cart = {};
     const addButtons = document.querySelectorAll('.add');
     const cartBtn = document.getElementById('open-cart');
@@ -332,8 +300,6 @@ if (savedCart) {
         isCheckingOut = false;
       }, 1500);
     });
-    localStorage.setItem('bioShieldCart', JSON.stringify(cart));
-
   </script>
 </body>
 </html>

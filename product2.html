@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="app.css" />
+  <title>Bio Shield</title>
+</head>
+<body>
+  <header>
+    <nav aria-label="Main navigation">
+      <ul class="nav">
+        <li>
+          <img src="images/images/Logo.png" alt="Bio Shield logo" class="logo">
+        </li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact-us.html">Contact Us</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <img src="images/images/Logo.png" width="250" alt="Bio Shield logo" />
+
+    <p>
+    </p>
+    <section class="image-row" aria-label="Featured products">
+      <img src="images/images/item2.png" class="product" alt="Insect repellent product 2" />
+    </section>
+  
+  
+  </main>
+  
+  <button id="open-cart" aria-haspopup="dialog" aria-controls="cart">
+    🛒 Cart <span id="cart-count">0</span>
+  </button>
+
+  <!-- Cart Modal -->
+  <dialog id="cart" aria-label="Shopping cart">
+    <h2>Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p>Total: $<span id="cart-total">0.00</span></p>
+    <section style="display:flex; gap:.5rem; justify-content:flex-end;">
+      <button id="close-cart" type="button">Close</button>
+      <button id="checkout" type="button">Checkout</button>
+    </section>
+  </dialog>
+  <footer>
+    &copy; 2025 Bio Shield. All rights reserved.
+  </footer>
+  <script>
+    const savedCart = localStorage.getItem('bioShieldCart');
+if (savedCart) {
+  Object.assign(cart, JSON.parse(savedCart));
+  updateCart();
+}
+
+    const cart = {};
+    const addButtons = document.querySelectorAll('.add');
+    const cartBtn = document.getElementById('open-cart');
+    const cartDialog = document.getElementById('cart');
+    const cartItemsEl = document.getElementById('cart-items');
+    const cartTotalEl = document.getElementById('cart-total');
+    const cartCountEl = document.getElementById('cart-count');
+    const closeBtn = document.getElementById('close-cart');
+
+    // open/close cart
+    cartBtn.addEventListener('click', () => cartDialog.showModal());
+    closeBtn.addEventListener('click', () => cartDialog.close());
+
+    // add to cart
+    addButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.dataset.name;
+        const price = Number(btn.dataset.price);
+        if (!cart[name]) cart[name] = { price, qty: 0 };
+        cart[name].qty++;
+        updateCart();
+        // feedback on button
+        btn.textContent = "✔ Added!";
+        setTimeout(() => btn.textContent = "Add to Cart", 1000);
+      });
+    });
+
+    function updateCart() {
+      cartItemsEl.innerHTML = '';
+      let count = 0, total = 0;
+
+      Object.entries(cart).forEach(([name, item]) => {
+        count += item.qty;
+        const subtotal = item.qty * item.price;
+        total += subtotal;
+
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${name}</span>
+          <span class="qty">
+            <button type="button" onclick="changeQty('${name}',-1)">−</button>
+            <strong>${item.qty}</strong>
+            <button type="button" onclick="changeQty('${name}',1)">+</button>
+          </span>
+          <span>$${item.price.toFixed(2)}</span>
+          <span class="subtotal">$${subtotal.toFixed(2)}</span>
+        `;
+        cartItemsEl.appendChild(li);
+      });
+
+      cartTotalEl.textContent = total.toFixed(2);
+      cartCountEl.textContent = count;
+    }
+
+    // qty change
+    window.changeQty = (name, delta) => {
+      if (!cart[name]) return;
+      cart[name].qty += delta;
+      if (cart[name].qty <= 0) delete cart[name];
+      updateCart();
+    };
+
+    // helpers
+    function clearCart() {
+      Object.keys(cart).forEach(k => delete cart[k]);
+      updateCart();
+    }
+    function getCartCount() {
+      return Object.values(cart).reduce((n, item) => n + item.qty, 0);
+    }
+
+    // spam-safe checkout with success / empty-cart shake
+    let isCheckingOut = false;
+    document.getElementById('checkout').addEventListener('click', function () {
+      const btn = this;
+      const originalText = btn.dataset.originalText || (btn.dataset.originalText = btn.textContent);
+
+      if (isCheckingOut) return;
+
+      if (getCartCount() === 0) {
+        btn.classList.add('shake');
+        btn.textContent = 'Cart is empty';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.classList.remove('shake');
+        }, 900);
+        return;
+      }
+
+      isCheckingOut = true;
+      btn.disabled = true;
+      btn.setAttribute('aria-busy', 'true');
+
+      btn.textContent = '✔ Order Placed!';
+      btn.classList.add('success');
+
+      clearCart();
+
+      setTimeout(() => {
+        btn.classList.remove('success');
+        btn.removeAttribute('aria-busy');
+        btn.disabled = false;
+        btn.textContent = originalText;
+        isCheckingOut = false;
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
