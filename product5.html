@@ -255,6 +255,35 @@
       if (cart[name].qty <= 0) delete cart[name];
       updateCart();
     };
+    function updateCart() {
+  cartItemsEl.innerHTML = '';
+  let count = 0, total = 0;
+
+  Object.entries(cart).forEach(([name, item]) => {
+    count += item.qty;
+    const subtotal = item.qty * item.price;
+    total += subtotal;
+
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <span>${name}</span>
+      <span class="qty">
+        <button type="button" onclick="changeQty('${name}',-1)">−</button>
+        <strong>${item.qty}</strong>
+        <button type="button" onclick="changeQty('${name}',1)">+</button>
+      </span>
+      <span>$${item.price.toFixed(2)}</span>
+      <span class="subtotal">$${subtotal.toFixed(2)}</span>
+    `;
+    cartItemsEl.appendChild(li);
+  });
+
+  cartTotalEl.textContent = total.toFixed(2);
+  cartCountEl.textContent = count;
+
+  // ✅ Save cart to localStorage on every update
+  localStorage.setItem('bioShieldCart', JSON.stringify(cart));
+}
 
     // helpers
     function clearCart() {

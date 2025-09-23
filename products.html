@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="app.css" />
   <title>Bio Shield</title>
   <style>
     :root {
@@ -18,6 +17,40 @@
       background: #ffffff;
       color: #000000;
     }
+
+    nav {
+      background: var(--accent);
+      padding: 0.8rem 1.2rem;
+    }
+    .nav {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav li {
+      display: flex;
+      align-items: center;
+    }
+    .nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    .nav a:hover {
+      color: #e0f7f1;
+    }
+    .logo {
+      height: 40px;
+      display: block;
+    }
+    .logo-item {
+      margin-right: auto;
+    }
+
     main {
       max-width: 1000px;
       margin: 2rem auto;
@@ -71,26 +104,47 @@
       cursor: pointer;
       display: flex; align-items: center; gap: .5rem;
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      z-index: 100;
+      z-index: 300;
     }
     #open-cart:hover { background: var(--accent-dark); }
     #cart-count { background: #fff; color: var(--accent); border-radius: 999px; padding: .1rem .6rem; font-weight: bold; }
 
-    dialog#cart {
-      width: min(600px, 95%);
-      border: none;
-      border-radius: var(--radius);
-      padding: 1rem 1.2rem;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.25);
-      margin: auto;     
-      inset: 0;          
+    /* Slide-up cart panel */
+    #cart-panel {
+      position: fixed;
+      bottom: -100%;
+      right: 0;
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+      padding: 1rem;
+      transition: bottom 0.3s ease;
+      z-index: 200;
     }
-    dialog#cart::backdrop { background: rgba(0,0,0,0.35); backdrop-filter: blur(2px); }
-
+    #cart-panel.open {
+      bottom: 0;
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .cart-actions {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: flex-end;
+      margin-top: 1rem;
+    }
     #cart-items { list-style: none; padding: 0; margin: 1rem 0; }
     #cart-items li {
-      display: grid; grid-template-columns: 1fr auto auto auto;
-      gap: .5rem; align-items: center;
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      gap: .5rem;
+      align-items: center;
       padding: .4rem 0;
       border-bottom: 1px dashed rgba(0,0,0,.1);
     }
@@ -101,28 +155,6 @@
       padding: .3rem .6rem; cursor: pointer;
     }
     .subtotal { font-weight: 700; text-align: right; }
-
-
-    #cart button {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: var(--radius);
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    #cart button:hover {
-      background: var(--accent-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-    }
-    #cart button:active {
-      transform: translateY(0);
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2) inset;
-    }
-
 
     #checkout.success { background: #28a745 !important; transform: scale(1.05); }
     @keyframes cartShake {
@@ -145,10 +177,12 @@
   <header>
     <nav aria-label="Main navigation">
       <ul class="nav">
-        <li><img src="images/images/Logo.png" alt="Bio Shield logo" class="logo"></li>
+        <li class="logo-item">
+          <a href="index.html"><img src="images/images/Logo.png" alt="Bio Shield logo" class="logo"></a>
+        </li>
         <li><a href="index.html">Home</a></li>
         <li><a href="contact-us.html">Contact Us</a></li>
-        <li><a href="about-us.html"> About Us</a></li>
+        <li><a href="about-us.html">About Us</a></li>
       </ul>
     </nav>
   </header>
@@ -158,182 +192,77 @@
     <p>Explore our premium Bio Shield products designed to keep you safe and healthy.</p>
     <p>Explore our natural insect repellents below:</p>
 
-   <section class="image-row">
+    <section class="image-row">
       <article class="product">
-        <a href="product1.html"><img src="images/images/Item1.png" alt="Pump bottle Lotion"> </a>
+        <a href="product1.html"><img src="images/images/Item1.png" alt="Pump bottle Lotion"></a>
         <p class="price">$12.99</p>
-        <p class="desc"> A refreshing all-natural bug spray made with essential oils to keep pests away.
-        </p>
-        <button class="add" data-name="Bug Repellent Spray" data-price="12.99">Add to Cart</button>
+        <p class="desc">Lotion Bottle:</p>
+        <p class="desc">A refreshing all-natural bug lotion made with essential oils to keep pests away.</p>
+        <button class="add" data-name="Bug Repellent lotion bottle" data-price="12.99">Add to Cart</button>
       </article>
+
       <article class="product">
-        <a href="product2.html"><img src="images/images/item2.png" alt="hand-carru Lotion"> </a>
+        <a href="product2.html"><img src="images/images/item2.png" alt="Hand-carry Lotion"></a>
         <p class="price">$12.99</p>
-        <p class="desc">hand-carry bottle Lotion:</p>
+        <p class="desc">Hand-carry Lotion bottle/p>
+        <p class="desc">A refreshing all-natural bug lotion made with essential oils to keep pests away.</p>
+        <button class="add" data-name="Hand-carry lotion bottle" data-price="12.99">Add to Cart</button>
+      </article>
+
+      <article class="product">
+        <a href="product3.html"><img src="images/images/Item3.png" alt="Bug Repellent Lotion"></a>
+        <p class="price">$12.99</p>
+        <p class="desc">Lotion Cream bottle:</p>
+        <p class="desc">A refreshing all-natural bug lotion made with essential oils to keep pests away.</p>
+        <button class="add" data-name="Bug Repellent lotion cream bottle" data-price="12.99">Add to Cart</button>
+      </article>
+
+      <article class="product">
+        <a href="product4.html"><img src="images/images/Item4.png" alt="Bug Repellent Spray"></a>
+        <p class="price">$12.99</p>
+        <p class="desc"> Bottle Spray</p>
         <p class="desc">A refreshing all-natural bug spray made with essential oils to keep pests away.</p>
         <button class="add" data-name="Bug Repellent Spray" data-price="12.99">Add to Cart</button>
       </article>
 
       <article class="product">
-        <a href="product3.html"><img src="images/images/Item3.png" alt="Bug Repellent Lotion"> </a>
+        <a href="product5.html"><img src="images/images/Item5.png" alt="Bug Repellent Coils"></a>
         <p class="price">$12.99</p>
-        <p class="desc">A refreshing all-natural bug spray made with essential oils to keep pests away.</p>
-        <button class="add" data-name="Bug Repellent Spray" data-price="12.99">Add to Cart</button>
-      </article>
-
-      <article class="product">
-        <a href="product4.html"><img src="images/images/Item4.png" alt="Bug Repellent Spray"> </a>
-        <p class="price">$12.99</p>
-        <p class="desc">A refreshing all-natural bug spray made with essential oils to keep pests away.</p>
-        <button class="add" data-name="Bug Repellent Spray" data-price="12.99">Add to Cart</button>
-      </article>
-
-      <article class="product">
-        <a href="product5.html"><img src="images/images/Item5.png" alt="Bug Repellent repellant coils"> </a>
-        <p class="price">$12.99</p>
-        <p class="desc">A refreshing all-natural bug spray made with essential oils to keep pests away.</p>
-        <button class="add" data-name="Bug Repellent Spray" data-price="12.99">Add to Cart</button>
+        <p class="desc">Bug repellant coils</p>
+        <p class="desc">A refreshing all-natural bug coils made with essential oils to keep pests away.</p>
+        <button class="add" data-name="Bug Repellent coil" data-price="12.99">Add to Cart</button>
       </article>
     </section>
   </main>
 
-
-
   <!-- Floating Cart Button -->
-  <button id="open-cart" aria-haspopup="dialog" aria-controls="cart">
+  <button id="open-cart" aria-haspopup="true" aria-controls="cart-panel">
     🛒 Cart <span id="cart-count">0</span>
   </button>
 
-  <!-- Cart Modal -->
-  <dialog id="cart" aria-label="Shopping cart">
-    <h2>Your Cart</h2>
+  <!-- Slide-up Cart Panel -->
+  <div id="cart-panel">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button id="close-cart" type="button">✖</button>
+    </div>
     <ul id="cart-items"></ul>
     <p>Total: $<span id="cart-total">0.00</span></p>
-    <section style="display:flex; gap:.5rem; justify-content:flex-end;">
-      <button id="close-cart" type="button">Close</button>
+    <div class="cart-actions">
       <button id="checkout" type="button">Checkout</button>
-    </section>
-  </dialog>
+      <button id="clear-cart" type="button">Clear Cart</button>
+    </div>
+  </div>
 
   <footer>
     <p>&copy; 2025 Bio Shield. All rights reserved.</p>
   </footer>
 
   <script>
-    const savedCart = localStorage.getItem('bioShieldCart');
-if (savedCart) {
-  Object.assign(cart, JSON.parse(savedCart));
-  updateCart();
-}
-
     const cart = {};
-    const addButtons = document.querySelectorAll('.add');
-    const cartBtn = document.getElementById('open-cart');
-    const cartDialog = document.getElementById('cart');
-    const cartItemsEl = document.getElementById('cart-items');
-    const cartTotalEl = document.getElementById('cart-total');
-    const cartCountEl = document.getElementById('cart-count');
-    const closeBtn = document.getElementById('close-cart');
-
-    // open/close cart
-    cartBtn.addEventListener('click', () => cartDialog.showModal());
-    closeBtn.addEventListener('click', () => cartDialog.close());
-
-    // add to cart
-    addButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const name = btn.dataset.name;
-        const price = Number(btn.dataset.price);
-        if (!cart[name]) cart[name] = { price, qty: 0 };
-        cart[name].qty++;
-        updateCart();
-        // feedback on button
-        btn.textContent = "✔ Added!";
-        setTimeout(() => btn.textContent = "Add to Cart", 1000);
-      });
-    });
-
-    function updateCart() {
-      cartItemsEl.innerHTML = '';
-      let count = 0, total = 0;
-
-      Object.entries(cart).forEach(([name, item]) => {
-        count += item.qty;
-        const subtotal = item.qty * item.price;
-        total += subtotal;
-
-        const li = document.createElement('li');
-        li.innerHTML = `
-          <span>${name}</span>
-          <span class="qty">
-            <button type="button" onclick="changeQty('${name}',-1)">−</button>
-            <strong>${item.qty}</strong>
-            <button type="button" onclick="changeQty('${name}',1)">+</button>
-          </span>
-          <span>$${item.price.toFixed(2)}</span>
-          <span class="subtotal">$${subtotal.toFixed(2)}</span>
-        `;
-        cartItemsEl.appendChild(li);
-      });
-
-      cartTotalEl.textContent = total.toFixed(2);
-      cartCountEl.textContent = count;
-    }
-
-    // qty change
-    window.changeQty = (name, delta) => {
-      if (!cart[name]) return;
-      cart[name].qty += delta;
-      if (cart[name].qty <= 0) delete cart[name];
-      updateCart();
-    };
-
-    // helpers
-    function clearCart() {
-      Object.keys(cart).forEach(k => delete cart[k]);
+    const savedCart = localStorage.getItem('bioShieldCart');
+    if (savedCart) {
+      Object.assign(cart, JSON.parse(savedCart));
       updateCart();
     }
-    function getCartCount() {
-      return Object.values(cart).reduce((n, item) => n + item.qty, 0);
-    }
 
-    // spam-safe checkout with success / empty-cart shake
-    let isCheckingOut = false;
-    document.getElementById('checkout').addEventListener('click', function () {
-      const btn = this;
-      const originalText = btn.dataset.originalText || (btn.dataset.originalText = btn.textContent);
-
-      if (isCheckingOut) return;
-
-      if (getCartCount() === 0) {
-        btn.classList.add('shake');
-        btn.textContent = 'Cart is empty';
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.classList.remove('shake');
-        }, 900);
-        return;
-      }
-
-      isCheckingOut = true;
-      btn.disabled = true;
-      btn.setAttribute('aria-busy', 'true');
-
-      btn.textContent = '✔ Order Placed!';
-      btn.classList.add('success');
-
-      clearCart();
-
-      setTimeout(() => {
-        btn.classList.remove('success');
-        btn.removeAttribute('aria-busy');
-        btn.disabled = false;
-        btn.textContent = originalText;
-        isCheckingOut = false;
-      }, 1500);
-    });
-    localStorage.setItem('bioShieldCart', JSON.stringify(cart));
-
-  </script>
-</body>
-</html>
