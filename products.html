@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="app.css" />
   <title>Bio Shield</title>
   <style>
     :root {
@@ -19,6 +18,42 @@
       color: #000000;
     }
 
+<<<<<<< HEAD
+=======
+    nav {
+      background: var(--accent);
+      padding: 0.8rem 1.2rem;
+    }
+    .nav {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav li {
+      display: flex;
+      align-items: center;
+    }
+    .nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    .nav a:hover {
+      color: #e0f7f1;
+    }
+    .logo {
+      height: 40px;
+      display: block;
+    }
+    .logo-item {
+      margin-right: auto;
+    }
+
+>>>>>>> ce7bfcf35056065921192cadad14d30c0f91e9bd
     main {
       max-width: 1000px;
       margin: 2rem auto;
@@ -85,11 +120,12 @@
       cursor: pointer;
       display: flex; align-items: center; gap: .5rem;
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      z-index: 100;
+      z-index: 300;
     }
     #open-cart:hover { background: var(--accent-dark); }
     #cart-count { background: #fff; color: var(--accent); border-radius: 999px; padding: .1rem .6rem; font-weight: bold; }
 
+<<<<<<< HEAD
 
     dialog#cart {
       width: min(600px, 95%);
@@ -99,13 +135,44 @@
       box-shadow: 0 40px 80px rgba(0,0,0,0.25);
       margin: auto;      
       inset: 0;         
+=======
+    /* Slide-up cart panel */
+    #cart-panel {
+      position: fixed;
+      bottom: -100%;
+      right: 0;
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+      padding: 1rem;
+      transition: bottom 0.3s ease;
+      z-index: 200;
     }
-    dialog#cart::backdrop { background: rgba(0,0,0,0.35); backdrop-filter: blur(2px); }
-
+    #cart-panel.open {
+      bottom: 0;
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .cart-actions {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: flex-end;
+      margin-top: 1rem;
+>>>>>>> ce7bfcf35056065921192cadad14d30c0f91e9bd
+    }
     #cart-items { list-style: none; padding: 0; margin: 1rem 0; }
     #cart-items li {
-      display: grid; grid-template-columns: 1fr auto auto auto;
-      gap: .5rem; align-items: center;
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      gap: .5rem;
+      align-items: center;
       padding: .4rem 0;
       border-bottom: 1px dashed rgba(0,0,0,.1);
     }
@@ -116,28 +183,6 @@
       padding: .3rem .6rem; cursor: pointer;
     }
     .subtotal { font-weight: 700; text-align: right; }
-
-
-    #cart button {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: var(--radius);
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    #cart button:hover {
-      background: var(--accent-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-    }
-    #cart button:active {
-      transform: translateY(0);
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2) inset;
-    }
-
 
     #checkout.success { background: #28a745 !important; transform: scale(1.05); }
     @keyframes cartShake {
@@ -160,10 +205,16 @@
   <header>
     <nav aria-label="Main navigation">
       <ul class="nav">
-        <li><img src="images/images/Logo.png" alt="Bio Shield logo" class="logo"></li>
+        <li class="logo-item">
+          <a href="index.html"><img src="images/images/Logo.png" alt="Bio Shield logo" class="logo"></a>
+        </li>
         <li><a href="index.html">Home</a></li>
         <li><a href="contact-us.html">Contact Us</a></li>
+<<<<<<< HEAD
         <li><a href="about-us.html">About us</a></li>
+=======
+        <li><a href="about-us.html">About Us</a></li>
+>>>>>>> ce7bfcf35056065921192cadad14d30c0f91e9bd
       </ul>
     </nav>
   </header>
@@ -173,15 +224,25 @@
     <p>Explore our premium Bio Shield products designed to keep you safe and healthy.</p>
     <p>Explore our natural insect repellents below:</p>
 
-   <section class="image-row">
+    <section class="image-row">
       <article class="product">
+<<<<<<< HEAD
         <img src="images/images/Item1.png" alt="Bug Repellent Spray">
         <p class="price">$12.99</p>
         <p class="desc">Pump Action Bio Shield Lotion</p>
         <p class="desc"> A 100% natural, plant-based formula in a sleek pump bottle designed to keep pests away safely and effectively.</p>
         <a><button class="add" data-name="Bug Repellent Spray" data-price="12.99">Add to Cart</button></a>
+=======
+        <a href="product1.html"><img src="images/images/Item1.png" alt="Pump bottle Lotion"></a>
+        <p class="price">$12.99</p>
+        <p class="desc">Lotion Bottle:</p>
+        <p class="desc">A refreshing all-natural bug lotion made with essential oils to keep pests away.</p>
+        <button class="add" data-name="Bug Repellent lotion bottle" data-price="12.99">Add to Cart</button>
+>>>>>>> ce7bfcf35056065921192cadad14d30c0f91e9bd
       </article>
+
       <article class="product">
+<<<<<<< HEAD
         <img src="images/images/Item2.png" alt="Bug Repellent Spray">
         <p class="price">$14.99</p>
         <p class="desc">A sleek glass bottle with a 100% natural, plant-based formula that offers lasting protection against insects while being gentle on skin.</p>
@@ -192,10 +253,33 @@
         <img src="images/images/Item3.png" alt="Bug Repellent Spray">
         <p class="price">$12.99</p>
         <p class="desc">A convenient squeeze tube with a 100% natural formula, perfect for quick, on-the-go protection against bugs.</p>
+=======
+        <a href="product2.html"><img src="images/images/item2.png" alt="Hand-carry Lotion"></a>
+        <p class="price">$12.99</p>
+        <p class="desc">Hand-carry Lotion bottle:</p>
+        <p class="desc">A refreshing all-natural bug lotion made with essential oils to keep pests away.</p>
+        <button class="add" data-name="Hand-carry lotion bottle" data-price="12.99">Add to Cart</button>
+      </article>
+
+      <article class="product">
+        <a href="product3.html"><img src="images/images/Item3.png" alt="Bug Repellent Lotion"></a>
+        <p class="price">$12.99</p>
+        <p class="desc">Lotion Cream bottle:</p>
+        <p class="desc">A refreshing all-natural bug lotion made with essential oils to keep pests away.</p>
+        <button class="add" data-name="Bug Repellent lotion cream bottle" data-price="12.99">Add to Cart</button>
+      </article>
+
+      <article class="product">
+        <a href="product4.html"><img src="images/images/Item4.png" alt="Bug Repellent Spray"></a>
+        <p class="price">$12.99</p>
+        <p class="desc">Bottle Spray:</p>
+        <p class="desc">A refreshing all-natural bug spray made with essential oils to keep pests away.</p>
+>>>>>>> ce7bfcf35056065921192cadad14d30c0f91e9bd
         <button class="add" data-name="Bug Repellent Spray" data-price="12.99">Add to Cart</button>
       </article>
 
       <article class="product">
+<<<<<<< HEAD
         <img src="images/images/Item4.png" alt="Bug Repellent Spray">
         <p class="price">$12.99</p>
         <p class="desc">A lightweight natural spray that delivers fast, even coverage for reliable all-day protection.</p>
@@ -208,23 +292,44 @@
         <p class="desc">Bio Shield Bug Repellent Coils! Long-lasting, all-natural coils that provide continuous protection for outdoor spaces.</p>
 
         <button class="add" data-name="Bug Repellent Spray" data-price="12.99">Add to Cart</button>
+=======
+        <a href="product5.html"><img src="images/images/Item5.png" alt="Bug Repellent Coils"></a>
+        <p class="price">$12.99</p>
+        <p class="desc">Bug repellant coils:</p>
+        <p class="desc">A refreshing all-natural bug coils made with essential oils to keep pests away.</p>
+        <button class="add" data-name="Bug Repellent coil" data-price="12.99">Add to Cart</button>
+>>>>>>> ce7bfcf35056065921192cadad14d30c0f91e9bd
       </article>
     </section>
   </main>
 
+<<<<<<< HEAD
   <button id="open-cart" aria-haspopup="dialog" aria-controls="cart">
     🛒 Cart <span id="cart-count">0</span>
   </button>
 
   <dialog id="cart" aria-label="Shopping cart">
     <h2>Your Cart</h2>
+=======
+  <!-- Floating Cart Button -->
+  <button id="open-cart" aria-haspopup="true" aria-controls="cart-panel">
+    🛒 Cart <span id="cart-count">0</span>
+  </button>
+
+  <!-- Slide-up Cart Panel -->
+  <div id="cart-panel">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button id="close-cart" type="button">✖</button>
+    </div>
+>>>>>>> ce7bfcf35056065921192cadad14d30c0f91e9bd
     <ul id="cart-items"></ul>
     <p>Total: $<span id="cart-total">0.00</span></p>
-    <section style="display:flex; gap:.5rem; justify-content:flex-end;">
-      <button id="close-cart" type="button">Close</button>
+    <div class="cart-actions">
       <button id="checkout" type="button">Checkout</button>
-    </section>
-  </dialog>
+      <button id="clear-cart" type="button">Clear Cart</button>
+    </div>
+  </div>
 
   <footer>
     <p>&copy; 2025 Bio Shield. All rights reserved.</p>
@@ -232,6 +337,7 @@
 
   <script>
     const cart = {};
+<<<<<<< HEAD
     const addButtons = document.querySelectorAll('.add');
     const cartBtn = document.getElementById('open-cart');
     const cartDialog = document.getElementById('cart');
@@ -294,12 +400,15 @@
     // helpers
     function clearCart() {
       Object.keys(cart).forEach(k => delete cart[k]);
+=======
+    const savedCart = localStorage.getItem('bioShieldCart');
+    if (savedCart) {
+      Object.assign(cart, JSON.parse(savedCart));
+>>>>>>> ce7bfcf35056065921192cadad14d30c0f91e9bd
       updateCart();
     }
-    function getCartCount() {
-      return Object.values(cart).reduce((n, item) => n + item.qty, 0);
-    }
 
+<<<<<<< HEAD
     // spam-safe checkout with success / empty-cart shake
     let isCheckingOut = false;
     document.getElementById('checkout').addEventListener('click', function () {
@@ -338,3 +447,5 @@
   </script>
 </body>
 </html>
+=======
+>>>>>>> ce7bfcf35056065921192cadad14d30c0f91e9bd
