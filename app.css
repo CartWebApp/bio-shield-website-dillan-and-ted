@@ -1,11 +1,11 @@
-main {
-  max-width: 900px;
-  margin: 2rem auto;
-  text-align: center;
+:root {
+  --accent-color: #1ba97f;
+  --accent-hover: #16936e;
+  --accent-dark: #147a5c;
+  --radius: 8px;
+  --font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  --accent: var(--accent-color);
 }
-
-
-
 
 * {
   margin: 0;
@@ -14,26 +14,11 @@ main {
 }
 
 body {
-  font-family: Arial, sans-serif;  
+  font-family: var(--font-family);
   line-height: 1.6;
   background: #ffffff;
   color: #333;
 }
-
-main img {
-  margin-bottom: 1rem;
-}
-
-
-
-:root {
-  --accent-color: #1ba97f;  
-  --accent-hover: #16936e;  
-  --radius: 8px;           
-  --font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-}
-
-:root { --accent: var(--accent-color); }
 
 header {
   background: #1ba97f;
@@ -58,8 +43,9 @@ nav a:hover {
   color: #8cfba6;
 }
 
-
 main {
+  max-width: 900px;
+  margin: 2rem auto;
   text-align: center;
   padding: 2rem;
 }
@@ -82,13 +68,13 @@ footer {
   margin-top: 2rem;
 }
 
-
 @media (max-width: 768px) {
   nav ul {
     flex-direction: column;
     gap: 1rem;
   }
 }
+
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -116,10 +102,6 @@ footer {
   border-color: var(--accent-color);
   box-shadow: 0 0 6px #1ba97f4d;
 }
-.image-row img:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 0 8px var(--accent-color));
-}
 
 .contact-form button {
   padding: 0.7rem 1.2rem;
@@ -139,7 +121,6 @@ footer {
   outline: none;
 }
 
-
 .contact-info {
   margin-top: 2rem;
   font-size: 0.95rem;
@@ -157,37 +138,39 @@ footer {
   outline: none;
 }
 
-.image-row img {
-  width: 200px;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-}
-
-
 .image-row {
-  display: flex !important;
+  display: flex;
   flex-wrap: wrap;
-  justify-content: center;  
+  justify-content: center;
   gap: 20px;
   max-width: 1000px;
   margin: 2rem auto;
 }
 
-
-.image-row .product {
-  flex: 0 0 280px;           
+.image-row img {
+  width: 200px;
+  border-radius: 8px;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+.image-row img:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 8px var(--accent-color));
+}
+
+.image-row .product {
+  flex: 0 0 280px;
+}
 
 .logo {
-  width: 78px;   
+  width: 78px;
   height: auto;
   display: block;
-  margin: 0 auto; 
+  margin: 0 auto;
   transition: none !important;
   box-shadow: none !important;
   filter: none !important;
-  cursor: default; 
+  cursor: default;
 }
 
 .nav {
@@ -199,18 +182,17 @@ footer {
 }
 
 .fake-link {
-  color: #0066cc;                  
-  text-decoration: underline;      
-  text-decoration-color: #0066cc; 
-  cursor: pointer;                
-  user-select: text;              
+  color: #0066cc;
+  text-decoration: underline;
+  text-decoration-color: #0066cc;
+  cursor: pointer;
+  user-select: text;
 }
 
 .fake-link:hover {
-  color: #004999;                  
+  color: #004999;
 }
 
-/* Style the action buttons in the cart footer */
 #cart button {
   background: var(--accent);
   color: #fff;
@@ -222,29 +204,27 @@ footer {
   transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Hover effect */
 #cart button:hover {
   background: var(--accent-dark);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
 
-/* Pressed effect */
 #cart button:active {
   transform: translateY(0);
   box-shadow: 0 3px 6px rgba(0,0,0,0.2) inset;
 }
 
-/* Success flash for checkout */
 #checkout.success {
-  background: #28a745 !important; /* green flash */
+  background: #28a745 !important;
   transform: scale(1.05);
 }
 
-/* Disabled state */
-#checkout[disabled] { opacity:.65; cursor:not-allowed; }
+#checkout[disabled] {
+  opacity: .65;
+  cursor: not-allowed;
+}
 
-/* Tiny shake when cart is empty */
 @keyframes cartShake {
   0%,100% { transform: translateX(0); }
   20% { transform: translateX(-4px); }
@@ -252,20 +232,22 @@ footer {
   60% { transform: translateX(-2px); }
   80% { transform: translateX(2px); }
 }
-#checkout.shake { animation: cartShake .4s ease; }
 
-dialog#cart{
+#checkout.shake {
+  animation: cartShake .4s ease;
+}
+
+dialog#cart {
   width: min(600px, 95%);
   border: none;
   border-radius: var(--radius);
   padding: 1rem 1.2rem;
   box-shadow: 0 40px 80px rgba(0,0,0,0.25);
-
-  /* ensure true centering everywhere */
-  margin: auto;       /* centers the box */
-  inset: 0;           /* let it center in viewport */
+  margin: auto;
+  inset: 0;
 }
-dialog#cart::backdrop{
+
+dialog#cart::backdrop {
   background: rgba(0,0,0,0.35);
   backdrop-filter: blur(2px);
 }
@@ -279,9 +261,8 @@ dialog#cart::backdrop{
   padding: 0.2rem;
   border-radius: var(--radius);
   border-left: 4px solid var(--accent);
-  text-align: left;   
+  text-align: left;
 }
-
 
 .image-row a {
   text-decoration: none;
