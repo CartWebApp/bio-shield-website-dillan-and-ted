@@ -261,6 +261,7 @@
       Object.keys(cart).forEach(k => delete cart[k]);
       updateCart();
     }
+<<<<<<< HEAD
     function updateCart() {
   cartItemsEl.innerHTML = '';
   let count = 0, total = 0;
@@ -291,6 +292,8 @@
   localStorage.setItem('bioShieldCart', JSON.stringify(cart));
 }
 
+=======
+>>>>>>> parent of 3c1fb90 (update.html)
     function getCartCount() {
       return Object.values(cart).reduce((n, item) => n + item.qty, 0);
     }
